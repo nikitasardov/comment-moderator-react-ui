@@ -1,6 +1,10 @@
 import React from "react";
 
 export default class CommentItem extends React.Component {
+/*    constructor(props) {
+        super(props);
+    }*/
+
     render() {
         return (
             <div className="comment">
@@ -8,18 +12,18 @@ export default class CommentItem extends React.Component {
                  <img src="/images/avatar/small/stevie.jpg">
                  </a>*/}
                 <div className="content">
-                    <a className="author">Stevie Feliciano</a>
-                    <div className="metadata">
+                    <a className="author">{this.props.commenter.name}</a>
+{/*                    <div className="metadata">
                         <div className="date">2 days ago</div>
                         <div className="rating">
                             <i className="star icon" />
                             5 Faves
                         </div>
-                    </div>
+                    </div>*/}
                     <div className="text">
-                        Hey guys, I hope this example comment is helping you read this documentation.
+                        {this.props.text}
                     </div>
-                    <div className="ui segment">
+{/*                    <div className="ui segment">
                         <div className="ui accordion">
                             <div className="title">
                                 <i className="dropdown icon" />
@@ -29,8 +33,8 @@ export default class CommentItem extends React.Component {
                                 <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="actions">
+                    </div>*/}
+{/*                    <div className="actions">
                         <a className="reply">Reply</a>
                         <a className="save">Save</a>
                         <a className="hide">Hide</a>
@@ -38,7 +42,7 @@ export default class CommentItem extends React.Component {
                             <i className="expand icon" />
                             Full-screen
                         </a>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         );
