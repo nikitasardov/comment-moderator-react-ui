@@ -1,5 +1,3 @@
-import App from "./App";
-
 export default class API {
     constructor() {
         this.baseURL = 'http://91.201.41.52:4567/api';
@@ -16,7 +14,7 @@ export default class API {
      *
      */
     getBoardInfo() {
-        return this.getAllArticles();
+        return this.getAllArticles()
     }
 
     /**
@@ -24,19 +22,20 @@ export default class API {
      *
      */
     getAllArticles() {
-        fetch(this.getArticlesURL, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(json => {
-                console.log('articles json:', json);
-                App.setState({articles: json});
-                return json;
+        return new Promise((resolve, reject) => {
+            fetch(this.getArticlesURL, {
+                method: 'GET'
             })
-            .catch(function (err) {
-                console.log('Error:', err);
-                return {}
-            });
+                .then(response => response.json())
+                .then(json => {
+                    console.log('articles json:', json);
+                    resolve(json);
+                })
+                .catch(function (err) {
+                    console.log('Error:', err);
+                    reject({});
+                });
+        });
     }
 
     /**
@@ -101,15 +100,3 @@ export default class API {
             });
     }
 }
-/*response => {
- /!*if (response.status !== 200) {
- console.log('Looks like there was a problem. Status Code: ' +
- response.status);
- return;
- }*!/
-
- // Examine the text in the response
- response.json().then(function (data) {
- console.log(data);
- });
- }*/
