@@ -24,7 +24,7 @@ export default class Board extends Component {
         return (
             <div className="ui content" style={{'background': '#666'}}>
                 <div className="ui container">
-                    <h2 className="ui header" style={{'paddingTop': '15px'}}>Comment Moderator</h2>
+                    <h2 className="ui header" style={{'paddingTop': '15px'}}><i className="doctor icon"/>Comment Moderator</h2>
                     <div className="ui two column doubling cards">
                         {cards}
                     </div>

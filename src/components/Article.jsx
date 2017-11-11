@@ -20,7 +20,7 @@ export default class Article extends Component {
                     <span className="name">
                         <i className="user icon"/>{this.props.author.name}
                     </span>
-                    <span className="ui right floated"><i className="protect icon"/>Article data cannot be modified</span>
+                    <span className="ui right floated"><i className="protect icon"/>Article title and content cannot be modified</span>
                 </div>
 
                 <div style={{'maxHeight': '15vh', 'overflowY': 'scroll'}}>
