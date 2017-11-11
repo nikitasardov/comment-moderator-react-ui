@@ -1,13 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
-export default class CommentsList extends React.Component {
+export default class CommentsList extends Component {
     render() {
         return (
             <div className="content">
-                <h3>Comments</h3>
-                <div className="meta">
-                    Total number of comments: ...
-                </div>
+                <span className="ui header"><i className="comments outline icon"/>Comments</span>
+                <span className="meta right floated"><i className="wizard icon"/>Comments can be modified</span>
             </div>
         );
     }

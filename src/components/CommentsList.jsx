@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 
 import CommentItem from "./CommentItem";
 import CommentsListHeader from "./CommentsListHeader";
 
-export default class CommentsList extends React.Component {
+export default class CommentsList extends Component {
 /*    constructor(props) {
         super(props);
     }*/
@@ -19,9 +19,9 @@ export default class CommentsList extends React.Component {
         });
 
         return (
-            <div className="content">
+            <div className="content" style={{'maxHeight': '60vh'}}>
                 <CommentsListHeader />
-                <div className="ui comments" style={{'maxHeight': '60vh', 'overflowY': 'scroll'}}>
+                <div className="ui comments" style={{'maxHeight': '45vh', 'overflowY': 'scroll'}}>
                     {comments}
                 </div>
             </div>

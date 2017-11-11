@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./components/App";
+import App from "./App";
 
-const data = [
+/*const data = [
     {
         "author": {
             "id": 5,
@@ -93,7 +93,7 @@ const data = [
         "text": "Article 3. Slimy mackerel char; three-toothed puffer pilchard; splitfin hawkfish butterfly ray Australasian salmon. Mouthbrooder morid cod redmouth whalefish boxfish trout-perch; channel catfish, lemon sole, sailback scorpionfish saury ghost carp whale shark.",
         "title": "Article 3"
     }
-];
+];*/
 
 const app = document.getElementById('app');
-ReactDOM.render(<App data={data} />, app);
+ReactDOM.render(<App/* data={data}*/ />, app);

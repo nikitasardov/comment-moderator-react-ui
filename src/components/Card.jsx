@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Article from './Article';
 import CommentsList from './CommentsList';
 
-export default class Card extends React.Component {
+export default class Card extends Component {
 /*    constructor(props) {
         super(props);
     }*/
@@ -11,7 +11,8 @@ export default class Card extends React.Component {
     render() {
 
         return (
-            <div className='ui card'>
+            <div className='ui card' style={{'background': '#909090'}}>
+                {/*{console.log(this.props.cardData)}*/}
                 <Article
                      id={this.props.id}
                      author={this.props.author}
