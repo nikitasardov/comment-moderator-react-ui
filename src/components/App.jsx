@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import API from './API';
-import Board from './components/Board';
+import API from '../libs/API';
+import Board from './Board';
 
 export default class App extends Component {
     constructor(props) {

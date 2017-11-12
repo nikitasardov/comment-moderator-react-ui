@@ -13,7 +13,6 @@ export default class Board extends Component {
             return <Card
                     key={article.id.toString()}
                     id={article.id}
-                    /*cardData={(new API()).getArticle(article.id)}*/
                     author={article.author}
                     title={article.title}
                     text={article.text}

@@ -4,9 +4,33 @@ export default class API {
         this.getArticlesURL = `${this.baseURL}/articles/`;
         this.getArticleURL = `${this.baseURL}/articles/`;
 
-        //http://joxi.ru/52avD0jcGxoNnA plural "comments", singular "user"
+        // http://joxi.ru/52avD0jcGxoNnA plural "comments", singular "user"
         this.putCommentURL = `${this.baseURL}/comments/`;
         this.putUserURL = `${this.baseURL}/user/`;
+    }
+
+    /**
+     * Any request to API is sent through this method
+     *
+     * @param URL
+     * @param method
+     * @returns {Promise}
+     */
+    request(URL, method) {
+        return new Promise((resolve, reject) => {
+            fetch(URL, {
+                method: method
+            })
+                .then(response => {
+                    let json = response.json();
+                    console.log(URL, method, 'response json:', json);
+                    resolve(json);
+                })
+                .catch(function (err) {
+                    console.log('Error:', err, URL, method);
+                    reject({});
+                });
+        });
     }
 
     /**
@@ -22,20 +46,7 @@ export default class API {
      *
      */
     getAllArticles() {
-        return new Promise((resolve, reject) => {
-            fetch(this.getArticlesURL, {
-                method: 'GET'
-            })
-                .then(response => response.json())
-                .then(json => {
-                    console.log('articles json:', json);
-                    resolve(json);
-                })
-                .catch(function (err) {
-                    console.log('Error:', err);
-                    reject({});
-                });
-        });
+        return this.request(this.getArticlesURL, 'GET');
     }
 
     /**

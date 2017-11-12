@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./App";
+import App from "./components/App";
 
+// static data was used in beginning
 /*const data = [
     {
         "author": {
