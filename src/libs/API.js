@@ -2,7 +2,7 @@
 
 export default class API {
     constructor() {
-        this.baseURL = 'http://91.201.41.52:4567/api';
+        this.baseURL = '//91.201.41.52:4567/api';
         this.getArticlesURL = `${this.baseURL}/articles/`;
         this.getArticleURL = `${this.baseURL}/articles/`;
 
