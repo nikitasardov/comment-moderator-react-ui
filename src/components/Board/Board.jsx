@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Card from "./Card";
+import Card from "./Card/Card";
 
 export default class Board extends Component {
 
@@ -31,9 +31,12 @@ export default class Board extends Component {
         }
 
         let putUserF = this.props.putUserF;
+        let putCommentF = this.props.putCommentF;
+        let refreshArticleF = this.props.refreshArticleF;
 
         let cards = this.props.data.map(function(article) {
-            return <Card
+            return (
+                <Card
                     key={article.id.toString()}
                     id={article.id}
                     author={article.author}
@@ -41,7 +44,10 @@ export default class Board extends Component {
                     text={article.text}
                     comments={article.comments}
                     putUserF={putUserF}
-            />
+                    putCommentF={putCommentF}
+                    refreshArticleF={refreshArticleF}
+                />
+            )
         });
 
         return (

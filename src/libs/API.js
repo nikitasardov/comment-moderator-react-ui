@@ -4,7 +4,6 @@ export default class API {
     constructor() {
         this.baseURL = '//91.201.41.52:4567/api';
         this.getArticlesURL = `${this.baseURL}/articles/`;
-        this.getArticleURL = `${this.baseURL}/articles/`;
 
         // http://joxi.ru/52avD0jcGxoNnA plural "comments", singular "user"
         this.putCommentURL = `${this.baseURL}/comments/`;
@@ -58,7 +57,7 @@ export default class API {
     }
 
     /**
-     * Gets some articles to fill the board
+     * Gets SOME articles to fill the board
      *
      */
     getBoardInfo = () => {
@@ -79,18 +78,7 @@ export default class API {
      * @param id
      */
     getArticle = (id) => {
-        fetch(`${this.getArticleURL}${id}`, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(json => {
-                console.log(`article id${id} json:`, json);
-                return json;
-            })
-            .catch(function (err) {
-                console.log('Error:', err);
-                return {}
-            });
+        return this.request(`${this.getArticlesURL}${id}`, 'GET');
     }
 
     /**
