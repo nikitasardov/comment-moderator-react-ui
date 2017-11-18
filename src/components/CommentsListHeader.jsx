@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export default class CommentsList extends Component {
-    render() {
+    render = () => {
         return (
             <div className="content">
                 <span className="ui header"><i className="comments outline icon"/>Comments</span>

@@ -4,11 +4,9 @@ import Article from './Article';
 import CommentsList from './CommentsList';
 
 export default class Card extends Component {
-/*    constructor(props) {
-        super(props);
-    }*/
 
-    render() {
+    render = () => {
+        let putUserF = this.props.putUserF;
 
         return (
             <div className='ui card' style={{'background': '#909090'}}>
@@ -19,7 +17,10 @@ export default class Card extends Component {
                      title={this.props.title}
                      text={this.props.text}
                 />
-                <CommentsList comments={this.props.comments} />
+                <CommentsList
+                    comments={this.props.comments}
+                    putUserF={putUserF}
+                />
             </div>
         );
     }

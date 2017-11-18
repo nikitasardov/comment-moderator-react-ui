@@ -4,17 +4,17 @@ import CommentItem from "./CommentItem";
 import CommentsListHeader from "./CommentsListHeader";
 
 export default class CommentsList extends Component {
-/*    constructor(props) {
-        super(props);
-    }*/
 
-    render() {
+    render = () => {
+        let putUserF = this.props.putUserF;
+
         let comments = this.props.comments.map(function(comment) {
             return <CommentItem
                 key={comment.id.toString()}
                 id={comment.id}
                 commenter={comment.commenter}
                 text={comment.text}
+                putUserF={putUserF}
             />
         });
 
