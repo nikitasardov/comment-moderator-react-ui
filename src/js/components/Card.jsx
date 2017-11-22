@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Article from './Article';
-import CommentsList from './Comment/CommentsList';
+import Article from './Article.jsx';
+import CommentsList from './CommentsList.jsx';
 
 export default class Card extends Component {
 

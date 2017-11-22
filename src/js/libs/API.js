@@ -1,6 +1,6 @@
 //import config from "./config";
 
-export default class API {
+class API {
     constructor() {
         this.baseURL = '//91.201.41.52:4567/api';
         this.getArticlesURL = `${this.baseURL}/articles/`;
@@ -101,3 +101,5 @@ export default class API {
         return this.request(`${this.putUserURL}${id}`, 'PUT', {'name': newName});
     }
 }
+
+export default new API();

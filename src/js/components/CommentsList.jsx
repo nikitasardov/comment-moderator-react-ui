@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import CommentItem from "./CommentList/CommentItem";
-import CommentsListHeader from "./CommentList/CommentsListHeader";
+import CommentItem from "./CommentItem.jsx";
+import CommentsListHeader from "./CommentsListHeader.jsx";
 
 export default class CommentsList extends Component {
 
