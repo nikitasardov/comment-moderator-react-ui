@@ -1,19 +1,13 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
+import React, {Component} from "react";
+import {connect} from 'react-redux';
 
-import Board from './views/Board.jsx';
 import ArticlesList from './views/ArticlesList.jsx';
 import SingleArticle from './views/SingleArticle.jsx';
 import NoDataError from './views/NoDataError.jsx';
 
-import { getAllArticles } from '../actions/articlesActions';
-
 @connect((store) => {
     return {
-        articles: store.articles.articles,
-        haveData: store.articles.haveData,
-        viewID: store.articles.viewID,
-        singleArticleData: store.articles.singleArticleData
+        view: store.navigation.view
     };
 })
 export default class Layout extends Component {
@@ -21,46 +15,25 @@ export default class Layout extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        if (!this.props.haveData) {
-            this.props.dispatch(getAllArticles());
-        }
-    }
-
-    componentDidMount() {
-        if (!this.props.haveData) {
-            this.props.dispatch(getAllArticles());
-        }
-    }
-
     render() {
-        const { articles, haveData, viewID, singleArticleData } = this.props;
+        const {view} = this.props;
 
         /**
-         * viewID = 0 - error fetching
-         * viewID = 1 - list of articles
-         * viewID = 2 - list of comments
-         * viewID = 3 - user`s comments
-         * viewID = 4 - single article with comments
+         * view.viewID = 0 - error fetching
+         * view.viewID = 1 - list of articles
+         * view.viewID = 2 - list of comments
+         * view.viewID = 3 - user`s comments
+         * view.viewID = 4 - single article with comments
          */
-        console.log('viewID', viewID);
-        switch (viewID) {
+        switch (view.viewID) {
             case 1:
-                if (haveData && articles.length) {
-                    return (<ArticlesList data={articles}/>)
-                } else {
-                    return (<NoDataError />);
-                }
+                return (<ArticlesList />);
             case 2:
 
             case 3:
 
             case 4:
-                if (haveData && singleArticleData) {
-                    return (<SingleArticle article={singleArticleData}/>)
-                } else {
-                    return (<NoDataError />);
-                }
+                return (<SingleArticle />);
             case 0:
                 return (<NoDataError />);
             default:

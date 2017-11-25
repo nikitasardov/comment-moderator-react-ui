@@ -12,7 +12,6 @@ export default function reducer(state = {
     requesting: false,
     haveData: false,
     articles: [],
-    viewID: 0,
     singleArticleData: null,
     error: null
 }, action) {
@@ -20,6 +19,8 @@ export default function reducer(state = {
         case GET_ALL_ARTICLES: {
             return {
                 ...state,
+                singleArticleData: null,
+                haveData: false,
                 requesting: true
             }
         }
@@ -28,7 +29,6 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
-                viewID: 0,
                 error: action.payload
             };
         }
@@ -38,14 +38,14 @@ export default function reducer(state = {
                 ...state,
                 requesting: false,
                 haveData: true,
-                articles: action.payload,
-                viewID: 1
+                articles: action.payload
             };
         }
 
         case GET_ARTICLE: {
             return {
                 ...state,
+                singleArticleData: null,
                 requesting: true,
                 haveData: false
             }
@@ -55,8 +55,6 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
-                haveData: false,
-                viewID: 0,
                 error: action.payload
             };
         }
@@ -65,7 +63,6 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
-                haveData: true,
                 articles: state.articles.map((article) => {
                     // insert refreshed article into new state
                     if (article.id === action.payload.id) {
@@ -73,8 +70,7 @@ export default function reducer(state = {
                     }
                     return article;
                 }),
-                singleArticleData: action.payload,
-                viewID: 4
+                singleArticleData: action.payload
             };
         }
     }

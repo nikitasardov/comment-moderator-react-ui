@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 
-import { getArticle } from '../../actions/articlesActions';
+import { changeView } from '../../actions/navigationActions';
 
 import ArticleAuthor from './ArticleAuthor.jsx';
 import CommentsInfo from '../comments/CommentsInfo.jsx';
@@ -19,11 +19,7 @@ export default class Article extends Component {
     }
 
     excerpt = (text) => {
-        return (
-            (this.props.excerpt)
-                ?  (text.substring(0, 200) + '...')
-                :  (text)
-        );
+        return ((this.props.excerpt) ? (text.substring(0, 200) + '...') : (text));
     }
 
     render() {
@@ -33,7 +29,7 @@ export default class Article extends Component {
                 <h4
                     className="header"
                     style={{'cursor': 'pointer'}}
-                    onClick={() => this.props.dispatch(getArticle(this.props.id))}
+                    onClick={() => this.props.dispatch(changeView(4, {articleID: this.props.id}))}
                 >
                     <i className="file text outline icon"/>{this.props.title} (id{this.props.id})
                 </h4>

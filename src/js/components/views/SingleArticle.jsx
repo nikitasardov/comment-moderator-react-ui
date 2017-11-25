@@ -1,17 +1,33 @@
 import React, {Component} from "react";
+import {connect} from 'react-redux';
 
 import Breadcrumbs from '../Breadcrumbs.jsx';
 import Article from '../articles/Article.jsx';
 
+import {getArticle} from '../../actions/articlesActions';
+
+@connect((store) => {
+    return {
+        article: store.articles.singleArticleData,
+        articles: store.articles.articles,
+        haveData: store.articles.haveData,
+        view: store.navigation.view
+    };
+})
 export default class SingleArticle extends Component {
-/*    constructor(props) {
-        super(props);
-    }*/
+
+    componentDidMount() {
+        if (!this.props.article) {
+            this.props.dispatch(getArticle(this.props.view.data.articleID));
+        }
+    }
 
     render() {
-        const { article } = this.props;
-        return (
-            <div className="ui content" style={{'background': '#666', 'height': '100vh'}}>
+        if (this.props.article) {
+            const {article} = this.props;
+            console.log(this.props);
+
+            return (
                 <div className="ui container">
                     <h3 className="header" style={{'paddingTop': '15px'}}>
                         <i className="doctor icon"/>Comment moderator
@@ -33,7 +49,13 @@ export default class SingleArticle extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div>
+                    SingleArticle. Fetching data...
+                </div>
+            );
+        }
     }
 }
