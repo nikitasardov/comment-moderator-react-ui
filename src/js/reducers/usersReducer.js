@@ -1,4 +1,4 @@
-import { PUT_COMMENT, PUT_COMMENT_REJECTED, PUT_COMMENT_FULFILLED } from '../constants.js';
+import { PUT_USER, PUT_USER_REJECTED, PUT_USER_FULFILLED } from '../constants.js';
 
 export default function reducer(state = {
     comment: null,
@@ -7,14 +7,14 @@ export default function reducer(state = {
     error: null
 }, action) {
     switch (action.type) {
-        case PUT_COMMENT: {
+        case PUT_USER: {
             return {
                 ...state,
                 requesting: true
             };
         }
 
-        case PUT_COMMENT_REJECTED: {
+        case PUT_USER_REJECTED: {
             return {
                 ...state,
                 requesting: false,
@@ -22,7 +22,7 @@ export default function reducer(state = {
             };
         }
 
-        case PUT_COMMENT_FULFILLED: {
+        case PUT_USER_FULFILLED: {
             return {
                 ...state,
                 requesting: true,

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { putUser } from '../actions/usersActions';
+import { putUser } from '../../actions/usersActions';
 
 export default class EditNameButton extends Component {
     constructor(props) {

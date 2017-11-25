@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import Article from './Article.jsx';
-import CommentsList from './CommentsList.jsx';
+import Article from './articles/Article.jsx';
+import CommentsList from './views/CommentsList.jsx';
 
+@connect((store) => {
+    return {
+        articles: store.articles.articles,
+        haveData: store.articles.haveData,
+        viewID: store.articles.viewID
+    };
+})
 export default class Card extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-    render = () => {
-        let putUserF = this.props.putUserF;
-        let putCommentF = this.props.putCommentF;
-        let refreshArticleF = this.props.refreshArticleF;
-
+    render() {
         return (
             <div className='ui card' style={{'background': '#909090'}}>
-                {/*{console.log(this.props.cardData)}*/}
                 <Article
                      id={this.props.id}
                      author={this.props.author}
                      title={this.props.title}
                      text={this.props.text}
-                     refreshArticleF={refreshArticleF}
                 />
                 <CommentsList
                     comments={this.props.comments}
-                    putUserF={putUserF}
-                    putCommentF={putCommentF}
                 />
             </div>
         );

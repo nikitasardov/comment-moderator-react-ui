@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { putComment } from '../actions/commentsActions';
+import { putComment } from '../../actions/commentsActions';
 
 export default class EditCommentButton extends Component {
     constructor(props) {

@@ -1,5 +1,13 @@
 import API from '../libs/API';
-import { GET_ALL_ARTICLES, GET_ALL_ARTICLES_FULFILLED, GET_ALL_ARTICLES_REJECTED } from '../constants.js';
+import {
+    GET_ALL_ARTICLES,
+    GET_ALL_ARTICLES_FULFILLED,
+    GET_ALL_ARTICLES_REJECTED,
+
+    GET_ARTICLE,
+    GET_ARTICLE_REJECTED,
+    GET_ARTICLE_FULFILLED
+} from '../constants.js';
 
 export function getAllArticles() {
     return function(dispatch) {
@@ -26,7 +34,7 @@ export function getArticle(id) {
     return function(dispatch) {
         dispatch({type: GET_ARTICLE});
 
-        API.getArticle()
+        API.getArticle(id)
             .then((response) => {
                 dispatch({
                     type: GET_ARTICLE_FULFILLED,

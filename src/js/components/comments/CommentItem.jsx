@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import EditNameButton from './EditNameButton.jsx';
-import EditCommentButton from './EditCommentButton.jsx';
+import EditNameButton from '../buttons/EditNameButton.jsx';
+import EditCommentButton from '../buttons/EditCommentButton.jsx';
 import CommenterName from './CommenterName.jsx';
 import CommentContent from './CommentContent.jsx';
 
