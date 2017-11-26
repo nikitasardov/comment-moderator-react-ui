@@ -1,6 +1,17 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
 
 import { putUser } from '../../actions/usersActions';
+
+@connect((store) => {
+    return {
+        /*nameEditMode: store.users.nameEditMode,*/
+        article: store.articles.singleArticleData,
+        articles: store.articles.articles,
+        haveData: store.articles.haveData,
+        view: store.navigation.view
+    };
+})
 
 export default class EditNameButton extends Component {
     constructor(props) {
@@ -12,7 +23,7 @@ export default class EditNameButton extends Component {
         };
     }
 
-    saveCommenterName = () => {
+    saveCommenterName() {
         console.log('putUserF(): commenterID', this.props.commenter.id,
                     'this.state.name',this.state.name);
         this.props.putUserF(this.props.commenter.id, this.state.name)
@@ -25,7 +36,7 @@ export default class EditNameButton extends Component {
             });
     }
 
-    renderEditNameButton = () => {
+    renderEditNameButton() {
         let editButton = <button
             className="ui black mini button"
             onClick={() => this.setState(

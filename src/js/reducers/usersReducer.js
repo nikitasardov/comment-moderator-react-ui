@@ -1,6 +1,7 @@
 import { PUT_USER, PUT_USER_REJECTED, PUT_USER_FULFILLED } from '../constants.js';
 
 export default function reducer(state = {
+    nameEditMode: false,
     comment: null,
     requesting: false,
     haveData: false,
@@ -10,7 +11,8 @@ export default function reducer(state = {
         case PUT_USER: {
             return {
                 ...state,
-                requesting: true
+                requesting: true,
+                nameEditMode: false
             };
         }
 

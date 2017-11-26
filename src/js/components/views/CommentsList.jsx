@@ -6,8 +6,6 @@ import CommentsListHeader from "../comments/CommentsListHeader.jsx";
 export default class CommentsList extends Component {
 
     render() {
-        let putUserF = this.props.putUserF;
-        let putCommentF = this.props.putCommentF;
 
         let comments = this.props.comments.map(function(comment) {
             return <CommentItem
@@ -15,15 +13,17 @@ export default class CommentsList extends Component {
                 id={comment.id}
                 commenter={comment.commenter}
                 text={comment.text}
-                putUserF={putUserF}
-                putCommentF={putCommentF}
+                comment={comment}
             />
         });
 
         return (
             <div className="content" style={{'maxHeight': '60vh'}}>
                 <CommentsListHeader comments={comments}/>
-                <div className="ui comments" style={{'maxHeight': '45vh', 'overflowY': 'scroll'}}>
+                <div
+                    className="ui comments"
+                    style={{'maxHeight': '45vh', 'overflowY': 'scroll'}}
+                >
                     {comments}
                 </div>
             </div>

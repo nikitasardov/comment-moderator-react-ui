@@ -22,9 +22,8 @@ export default class CommentItem extends Component {
                 <div className="ui inverted blue segment">
                     <div className="content">
                         <div className="ui right floated ">
-                            {/*<EditNameButton
-                                commenter={this.props.commenter} />*/}
-{/*                            <EditCommentButton />*/}
+                            <EditNameButton commenter={this.props.commenter} />
+                            {/*<EditCommentButton comment={this.props.comment}/>*/}
                         </div>
                         <CommenterName
                             commenter={this.props.commenter}

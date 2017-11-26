@@ -5,12 +5,12 @@ import { putComment } from '../../actions/commentsActions';
 export default class EditCommentButton extends Component {
     constructor(props) {
         super(props);
-/*        this.state = {
+        this.state = {
             nameEditMode: false,
-            name: this.props.commenter.name,
+            name: this.props.comment.commenter.name,
             commentEditMode: false,
             comment: this.props.text
-        };*/
+        };
     }
 
     saveCommentText = () => {
