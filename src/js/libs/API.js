@@ -33,13 +33,13 @@ class API {
                 };
 
                 obj['body'] = JSON.stringify(paramsObj);
-                console.log('obj[\'body\']',obj['body']);
+                /*console.log('obj[\'body\']',obj['body']);*/
             }
 
             fetch(URL, obj)
                 .then(response => {
                     let json = response.json();
-                    console.log(URL, method, paramsObj, 'response json:', json);
+                    /*console.log(URL, method, paramsObj, 'response json:', json);*/
                     resolve(json);
                 })
                 .catch(function (err) {

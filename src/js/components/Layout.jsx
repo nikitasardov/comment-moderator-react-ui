@@ -5,6 +5,14 @@ import ArticlesList from './views/ArticlesList.jsx';
 import SingleArticle from './views/SingleArticle.jsx';
 import NoDataError from './views/NoDataError.jsx';
 
+import {
+    VIEW_ERROR,
+    VIEW_LIST_OF_ARTICLES,
+    VIEW_LIST_OF_COMMENTS,
+    VIEW_USER_S_COMMENTS,
+    VIEW_SINGLE_ARTICLE
+} from '../constants.js';
+
 @connect((store) => {
     return {
         view: store.navigation.view
@@ -26,15 +34,15 @@ export default class Layout extends Component {
          * view.viewID = 4 - single article with comments
          */
         switch (view.viewID) {
-            case 1:
+            case VIEW_LIST_OF_ARTICLES:
                 return (<ArticlesList />);
-            case 2:
+            case VIEW_LIST_OF_COMMENTS:
 
-            case 3:
+            case VIEW_USER_S_COMMENTS:
 
-            case 4:
+            case VIEW_SINGLE_ARTICLE:
                 return (<SingleArticle />);
-            case 0:
+            case VIEW_ERROR:
                 return (<NoDataError />);
             default:
                 return (<NoDataError />);

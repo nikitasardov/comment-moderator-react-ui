@@ -1,30 +1,34 @@
 import React, {Component} from "react";
+import {connect} from 'react-redux';
 
-//import {getArticle} from '../actions/articlesActions';
+import {changeView} from '../../actions/navigationActions';
+import {VIEW_SINGLE_ARTICLE} from '../../constants.js';
 
+@connect((store) => {
+    return {
+        view: store.navigation.view
+    };
+})
 export default class CommentsInfo extends Component {
     constructor(props) {
         super(props);
     }
 
-    commentsInfo = () => {
-        const { length } = this.props.comments;
-        return (
-            (length > 0)
-                ? <span>
-                      <i className="comments outline icon"/>{length} <span
-                className="ui link">Show comments</span>
-                    </span>
-                : <span>
-                      <i className="comments outline icon"/>{length} Still no comments
-                  </span>
-        );
-    }
-
     render() {
+        if (this.props.view.viewID === VIEW_SINGLE_ARTICLE)  {
+            return ('');
+        }
         return (
-            <div className="meta">
-                {this.commentsInfo()}
+            <div
+                style={{'cursor': 'pointer'}}
+                className="meta"
+                onClick={() => {
+                    this.props.dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: this.props.articleID}))
+                }}
+            >
+                <span>
+                    {this.props.comments.length} <i className="comments outline icon"/> Open card
+                </span>
             </div>
         );
     }

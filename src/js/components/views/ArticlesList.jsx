@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 
+import CSSPreLoader from "./CSSPreLoader.jsx";
 import Breadcrumbs from '../Breadcrumbs.jsx';
 import Article from '../articles/Article.jsx';
 
@@ -55,9 +56,10 @@ export default class ArticlesList extends Component {
             );
         } else {
             return (
-                <div>
+                /*<div>
                     Fetching data...
-                </div>
+                </div>*/
+                <CSSPreLoader />
             );
         }
     }

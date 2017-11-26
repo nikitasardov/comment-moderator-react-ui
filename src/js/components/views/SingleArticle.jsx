@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 
+import CSSPreLoader from "./CSSPreLoader.jsx";
 import Breadcrumbs from '../Breadcrumbs.jsx';
 import Article from '../articles/Article.jsx';
-import CommentsList from '../comments/CommentsList.jsx';
+import CommentsOfArticle from '../comments/CommentsOfArticle.jsx';
 
 import {getArticle} from '../../actions/articlesActions';
 
@@ -26,7 +27,6 @@ export default class SingleArticle extends Component {
     render() {
         if (this.props.article) {
             const {article} = this.props;
-            console.log(this.props);
 
             return (
                 <div className="ui container">
@@ -49,7 +49,7 @@ export default class SingleArticle extends Component {
                                 comments={article.comments}
                             />
 
-                            <CommentsList
+                            <CommentsOfArticle
                                 comments={article.comments}
                             />
 
@@ -59,9 +59,10 @@ export default class SingleArticle extends Component {
             );
         } else {
             return (
-                <div>
+                /*<div>
                     SingleArticle. Fetching data...
-                </div>
+                </div>*/
+                <CSSPreLoader />
             );
         }
     }

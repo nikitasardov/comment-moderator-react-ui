@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import CommentItem from "./CommentItem.jsx";
 import CommentsListHeader from "./CommentsListHeader.jsx";
 
-export default class CommentsList extends Component {
+export default class CommentsOfArticle extends Component {
 
     render() {
-
         let comments = this.props.comments.map(function(comment) {
             return <CommentItem
                 key={comment.id.toString()}
@@ -17,9 +16,12 @@ export default class CommentsList extends Component {
         });
 
         return (
-            <div className="content" style={{'maxHeight': '60vh'}}>
+            <div className="content" /*style={{'maxHeight': '60vh'}}*/>
                 <CommentsListHeader comments={comments}/>
-                <div className="ui comments" style={{'maxHeight': '45vh', 'overflowY': 'scroll'}}>
+                <div
+                    className="ui comments"
+                    /*style={{'maxHeight': '45vh', 'overflowY': 'scroll'}}*/
+                >
                     {comments}
                 </div>
             </div>

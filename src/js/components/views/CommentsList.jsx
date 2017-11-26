@@ -5,7 +5,7 @@ import CommentsListHeader from "../comments/CommentsListHeader.jsx";
 
 export default class CommentsList extends Component {
 
-    render = () => {
+    render() {
         let putUserF = this.props.putUserF;
         let putCommentF = this.props.putCommentF;
 

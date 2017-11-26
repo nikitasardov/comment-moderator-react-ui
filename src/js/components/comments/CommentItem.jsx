@@ -8,12 +8,12 @@ import CommentContent from './CommentContent.jsx';
 export default class CommentItem extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        /*this.state = {
             nameEditMode: false,
             name: this.props.commenter.name,
             commentEditMode: false,
             comment: this.props.text
-        };
+        };*/
     }
 
     render() {
@@ -22,13 +22,17 @@ export default class CommentItem extends Component {
                 <div className="ui inverted blue segment">
                     <div className="content">
                         <div className="ui right floated ">
-                            <EditNameButton
-                                commenter={this.props.commenter} />
+                            {/*<EditNameButton
+                                commenter={this.props.commenter} />*/}
 {/*                            <EditCommentButton />*/}
                         </div>
                         <CommenterName
-                            commenter={this.props.commenter} />
-{/*                        <CommentContent />*/}
+                            commenter={this.props.commenter}
+                        />
+                        <CommentContent
+                            comment={this.props.text}
+                            id={this.props.id}
+                        />
                     </div>
                 </div>
             </div>
