@@ -2,7 +2,7 @@
 
 class API {
     constructor() {
-        this.baseURL = '//91.201.41.52:4567/api';
+        this.baseURL = 'http://91.201.41.52:4567/api';
         this.getArticlesURL = `${this.baseURL}/articles/`;
 
         // http://joxi.ru/52avD0jcGxoNnA plural "comments", singular "user"

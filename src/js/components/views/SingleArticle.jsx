@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import Breadcrumbs from '../Breadcrumbs.jsx';
 import Article from '../articles/Article.jsx';
+import CommentsList from '../comments/CommentsList.jsx';
 
 import {getArticle} from '../../actions/articlesActions';
 
@@ -32,7 +33,8 @@ export default class SingleArticle extends Component {
                     <h3 className="header" style={{'paddingTop': '15px'}}>
                         <i className="doctor icon"/>Comment moderator
                     </h3>
-                    <Breadcrumbs viewTitle={'Single article "' + article.title + '"'}/>
+                    {/*<Breadcrumbs viewTitle={'Single article "' + article.title + '"'}/>*/}
+                    <Breadcrumbs viewTitle={'Single article with comments'}/>
 
                     <div className="ui cards">
                         <div
@@ -46,6 +48,11 @@ export default class SingleArticle extends Component {
                                 text={article.text}
                                 comments={article.comments}
                             />
+
+                            <CommentsList
+                                comments={article.comments}
+                            />
+
                         </div>
                     </div>
                 </div>

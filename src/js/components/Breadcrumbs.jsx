@@ -29,7 +29,7 @@ export default class Breadcrumbs extends Component {
             <h4 className="header" style={{'marginTop': '0'}}>
                 {(isLink)
                     ? <span className="ui link"
-                            style={{'cursor': 'pointer'}}
+                            style={{'cursor': 'pointer', 'color': '#333'}}
                             onClick={() => this.props.dispatch(goHome())}>{text}</span>
                     : text
                 }
