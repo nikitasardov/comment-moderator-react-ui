@@ -1,5 +1,3 @@
-//import config from "./config";
-
 class API {
     constructor() {
         this.baseURL = 'http://91.201.41.52:4567/api';

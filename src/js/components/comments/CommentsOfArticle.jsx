@@ -6,6 +6,7 @@ import CommentsListHeader from "./CommentsListHeader.jsx";
 export default class CommentsOfArticle extends Component {
 
     render() {
+        //commentsArr
         let comments = this.props.comments.map(function(comment) {
             return <CommentItem
                 key={comment.id.toString()}

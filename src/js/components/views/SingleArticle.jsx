@@ -6,13 +6,13 @@ import Breadcrumbs from '../Breadcrumbs.jsx';
 import Article from '../articles/Article.jsx';
 import CommentsOfArticle from '../comments/CommentsOfArticle.jsx';
 
-import {getArticle} from '../../actions/articlesActions';
+import {getArticle} from '../../actions/dataActions';
 
 @connect((store) => {
     return {
-        article: store.articles.singleArticleData,
-        articles: store.articles.articles,
-        haveData: store.articles.haveData,
+        article: store.data.singleArticleData,
+        articles: store.data.articles,
+        haveData: store.data.haveData,
         view: store.navigation.view
     };
 })
@@ -25,6 +25,9 @@ export default class SingleArticle extends Component {
     }
 
     render() {
+        if (this.props.view.viewID === 4) {
+            console.log('SingleArticle', this.props);
+        }
         if (this.props.article) {
             const {article} = this.props;
 
@@ -33,7 +36,6 @@ export default class SingleArticle extends Component {
                     <h3 className="header" style={{'paddingTop': '15px'}}>
                         <i className="doctor icon"/>Comment moderator
                     </h3>
-                    {/*<Breadcrumbs viewTitle={'Single article "' + article.title + '"'}/>*/}
                     <Breadcrumbs viewTitle={'Single article with comments'}/>
 
                     <div className="ui cards">
@@ -42,28 +44,23 @@ export default class SingleArticle extends Component {
                             style={{'background': '#909090'}}
                         >
                             <Article
-                                id={article.id}
-                                author={article.author}
+                                articleID={article.id}
+                                authorID={article.author}
                                 title={article.title}
-                                text={article.text}
-                                comments={article.comments}
+                                articleText={article.text}
+                                commentsArr={article.comments}
                             />
 
-                            <CommentsOfArticle
-                                comments={article.comments}
-                            />
+                            {/*<CommentsOfArticle
+                                commentsArr={article.comments}
+                            />*/}
 
                         </div>
                     </div>
                 </div>
             );
         } else {
-            return (
-                /*<div>
-                    SingleArticle. Fetching data...
-                </div>*/
-                <CSSPreLoader />
-            );
+            return (<CSSPreLoader />);
         }
     }
 }

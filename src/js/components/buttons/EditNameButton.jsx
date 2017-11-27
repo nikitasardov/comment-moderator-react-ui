@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 
-import { putUser } from '../../actions/usersActions';
+import { putUser } from '../../actions/dataActions';
 
 @connect((store) => {
     return {
         /*nameEditMode: store.users.nameEditMode,*/
-        article: store.articles.singleArticleData,
-        articles: store.articles.articles,
-        haveData: store.articles.haveData,
+        article: store.data.singleArticleData,
+        articles: store.data.articles,
+        haveData: store.data.haveData,
         view: store.navigation.view
     };
 })

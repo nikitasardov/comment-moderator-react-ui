@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
 
 import navigation from './navigationReducer';
-import articles from './articlesReducer';
-import comments from './commentsReducer';
+import data from './dataReducer';
 
 export default combineReducers({
-    articles,
-    comments,
-    navigation
+    navigation,
+    data
 })

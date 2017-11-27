@@ -15,7 +15,9 @@ export default class CommentsInfo extends Component {
     }
 
     render() {
-        if (this.props.view.viewID === VIEW_SINGLE_ARTICLE)  {
+        const {view, dispatch, articleID, comments} = this.props;
+
+        if (view.viewID === VIEW_SINGLE_ARTICLE)  {
             return ('');
         }
         return (
@@ -23,12 +25,10 @@ export default class CommentsInfo extends Component {
                 style={{'cursor': 'pointer'}}
                 className="meta"
                 onClick={() => {
-                    this.props.dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: this.props.articleID}))
+                    dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: articleID}))
                 }}
             >
-                <span>
-                    {this.props.comments.length} <i className="comments outline icon"/> Open card
-                </span>
+                <span>{comments.length} <i className="comments outline icon"/> Open card</span>
             </div>
         );
     }

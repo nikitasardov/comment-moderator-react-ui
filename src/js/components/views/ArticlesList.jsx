@@ -5,12 +5,13 @@ import CSSPreLoader from "./CSSPreLoader.jsx";
 import Breadcrumbs from '../Breadcrumbs.jsx';
 import Article from '../articles/Article.jsx';
 
-import {getAllArticles} from '../../actions/articlesActions';
+import {getAllArticles} from '../../actions/dataActions';
+import {mapObject} from '../../libs/functions';
 
 @connect((store) => {
     return {
-        articles: store.articles.articles,
-        haveData: store.articles.haveData
+        articles: store.data.articles,
+        haveData: store.data.haveData
     };
 })
 export default class ArticlesList extends Component {
@@ -22,8 +23,10 @@ export default class ArticlesList extends Component {
     }
 
     render() {
+        const {articles} = this.props;
         if (this.props.haveData) {
-            let articleCards = this.props.articles.map(function (article) {
+            let articleCards =  mapObject(articles, articleID => {
+                const article = articles[articleID];
                 return (
                     <div
                         key={article.id.toString()}
@@ -31,16 +34,35 @@ export default class ArticlesList extends Component {
                         style={{'background': '#909090'}}
                     >
                         <Article
-                            id={article.id}
+                            articleID={article.id}
                             excerpt={true}
-                            author={article.author}
+                            authorID={article.author}
                             title={article.title}
-                            text={article.text}
-                            comments={article.comments}
+                            articleText={article.text}
+                            commentsArr={article.comments}
                         />
                     </div>
                 )
             });
+            /*            let articleCards = Object.keys(articles).map(articleID => {
+                            const article = articles[articleID];
+                            return (
+                                <div
+                                    key={article.id.toString()}
+                                    className='ui fluid card'
+                                    style={{'background': '#909090'}}
+                                >
+                                    <Article
+                                        articleID={article.id}
+                                        excerpt={true}
+                                        authorID={article.author}
+                                        title={article.title}
+                                        articleText={article.text}
+                                        commentsArr={article.comments}
+                                    />
+                                </div>
+                            )
+                        });*/
 
             return (
                 <div className="ui container">
@@ -55,12 +77,7 @@ export default class ArticlesList extends Component {
                 </div>
             );
         } else {
-            return (
-                /*<div>
-                    Fetching data...
-                </div>*/
-                <CSSPreLoader />
-            );
+            return (<CSSPreLoader />);
         }
     }
 }

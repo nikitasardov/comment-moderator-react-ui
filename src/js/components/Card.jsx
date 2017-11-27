@@ -6,9 +6,8 @@ import CommentsList from './views/CommentsList.jsx';
 
 @connect((store) => {
     return {
-        articles: store.articles.articles,
-        haveData: store.articles.haveData,
-        viewID: store.articles.viewID
+        articles: store.data.articles,
+        haveData: store.data.haveData
     };
 })
 export default class Card extends Component {

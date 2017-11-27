@@ -26,13 +26,6 @@ export default class Layout extends Component {
     render() {
         const {view} = this.props;
 
-        /**
-         * view.viewID = 0 - error fetching
-         * view.viewID = 1 - list of articles
-         * view.viewID = 2 - list of comments
-         * view.viewID = 3 - user`s comments
-         * view.viewID = 4 - single article with comments
-         */
         switch (view.viewID) {
             case VIEW_LIST_OF_ARTICLES:
                 return (<ArticlesList />);

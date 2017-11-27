@@ -5,10 +5,10 @@ import { goHome } from '../actions/navigationActions';
 
 @connect((store) => {
     return {
-        articles: store.articles.articles,
-        haveData: store.articles.haveData,
-        viewID: store.articles.viewID,
-        singleArticleData: store.articles.singleArticleData
+        articles: store.data.articles,
+        haveData: store.data.haveData,
+        /*viewID: store.data.viewID,*/
+        singleArticleData: store.data.singleArticleData
     };
 })
 export default class Breadcrumbs extends Component {

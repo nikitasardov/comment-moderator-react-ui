@@ -10,8 +10,9 @@ import {VIEW_SINGLE_ARTICLE} from '../../constants.js';
 
 @connect((store) => {
     return {
-        articles: store.articles.articles,
-        haveData: store.articles.haveData,
+        articles: store.data.articles,
+        users: store.data.users,
+        haveData: store.data.haveData,
         view: store.navigation.view
     };
 })
@@ -25,9 +26,14 @@ export default class Article extends Component {
     }
 
     render() {
+        const {view, dispatch, articleID, title, authorID, commentsArr, articleText} = this.props;
         let headerStyle = {};
-        if (this.props.view.viewID !== VIEW_SINGLE_ARTICLE) {
+
+        if (view.viewID !== VIEW_SINGLE_ARTICLE) {
             headerStyle = {'cursor': 'pointer'};
+        }
+        if (view.viewID === VIEW_SINGLE_ARTICLE) {
+            console.log('Article', this.props);
         }
         return (
             <div className="content" style={{'maxHeight': '50vh'}}>
@@ -35,25 +41,25 @@ export default class Article extends Component {
                     className="header"
                     style={headerStyle}
                     onClick={() => {
-                        if (this.props.view.viewID !== VIEW_SINGLE_ARTICLE) {
-                            this.props.dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: this.props.id}))
+                        if (view.viewID !== VIEW_SINGLE_ARTICLE) {
+                            dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: articleID}))
                         }
                     }}
                 >
-                    <i className="file text outline icon"/>{this.props.title} (id{this.props.id})
+                    <i className="file text outline icon"/>{title} (id{articleID})
                 </h4>
 
-                <ArticleAuthor author={this.props.author}/>
+                <ArticleAuthor authorID={authorID}/>
 
                 <div style={{'maxHeight': '40vh', /* 'overflowY': 'scroll',*/ 'clear': 'both'}}>
                     <div className="ui raised inverted grey segment">
-                        {this.excerpt(this.props.text)}
+                        {this.excerpt(articleText)}
                     </div>
                 </div>
 
                 <CommentsInfo
-                    comments={this.props.comments}
-                    articleID={this.props.id}
+                    comments={commentsArr}
+                    articleID={articleID}
                 />
 
             </div>
