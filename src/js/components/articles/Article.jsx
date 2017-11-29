@@ -12,7 +12,6 @@ import {VIEW_SINGLE_ARTICLE} from '../../constants.js';
     return {
         articles: store.data.articles,
         users: store.data.users,
-        haveData: store.data.haveData,
         view: store.navigation.view
     };
 })
@@ -21,20 +20,18 @@ export default class Article extends Component {
         super(props);
     }
 
-    excerpt = (text) => {
+    mayBeExcerpt = (text) => {
         return ((this.props.excerpt) ? (text.substring(0, 200) + '...') : (text));
     }
 
     render() {
         const {view, dispatch, articleID, title, authorID, commentsArr, articleText} = this.props;
-        let headerStyle = {};
 
+        let headerStyle = {};
         if (view.viewID !== VIEW_SINGLE_ARTICLE) {
             headerStyle = {'cursor': 'pointer'};
         }
-        if (view.viewID === VIEW_SINGLE_ARTICLE) {
-            console.log('Article', this.props);
-        }
+
         return (
             <div className="content" style={{'maxHeight': '50vh'}}>
                 <h4
@@ -53,7 +50,7 @@ export default class Article extends Component {
 
                 <div style={{'maxHeight': '40vh', /* 'overflowY': 'scroll',*/ 'clear': 'both'}}>
                     <div className="ui raised inverted grey segment">
-                        {this.excerpt(articleText)}
+                        {this.mayBeExcerpt(articleText)}
                     </div>
                 </div>
 

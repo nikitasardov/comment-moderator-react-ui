@@ -30,9 +30,9 @@ export default class Layout extends Component {
             case VIEW_LIST_OF_ARTICLES:
                 return (<ArticlesList />);
             case VIEW_LIST_OF_COMMENTS:
-
+                /*return (<CommentsList />);*/
             case VIEW_USER_S_COMMENTS:
-
+                /*return (<UsersCommentsList />);*/
             case VIEW_SINGLE_ARTICLE:
                 return (<SingleArticle />);
             case VIEW_ERROR:

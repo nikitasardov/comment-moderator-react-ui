@@ -10,21 +10,17 @@ import {
 
 export default function reducer(state = {
     requesting: false,
-    haveData: false,
-    data: {
-        articles: {},
-        comments: {},
-        users: {}
-    },
-    singleArticleData: null,
+    dataFetched: false,
+    articles: {},
+    comments: {},
+    users: {},
     error: null
 }, action) {
     switch (action.type) {
         case GET_ALL_ARTICLES: {
             return {
                 ...state,
-                singleArticleData: null,
-                haveData: false,
+                dataFetched: false,
                 requesting: true
             }
         }
@@ -33,6 +29,7 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
+                dataFetched: false,
                 error: action.payload
             };
         }
@@ -41,7 +38,7 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
-                haveData: true,
+                dataFetched: true,
                 articles: action.payload.articles,
                 comments: action.payload.comments,
                 users: action.payload.users
@@ -51,9 +48,8 @@ export default function reducer(state = {
         case GET_ARTICLE: {
             return {
                 ...state,
-                singleArticleData: null,
                 requesting: true,
-                haveData: false
+                dataFetched: false
             }
         }
 
@@ -61,6 +57,7 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
+                dataFetched: false,
                 error: action.payload
             };
         }
@@ -69,9 +66,10 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
+                dataFetched: true,
                 articles: Object.assign(
                     {},
-                    state.data.articles,
+                    state.articles,
                     action.payload.articles
                 ),
                 /*articles: mapObject(state.data.articles, articleID => {
@@ -84,15 +82,14 @@ export default function reducer(state = {
                 }),*/
                 comments: Object.assign(
                     {},
-                    state.data.comments,
+                    state.comments,
                     action.payload.comments
                 ),
                 users: Object.assign(
                     {},
-                    state.data.users,
+                    state.users,
                     action.payload.users
-                ),
-                singleArticleData: action.payload
+                )
             };
         }
     }
@@ -106,7 +103,7 @@ export default function reducer(state = {
  export default function reducer(state = {
  comment: null,
  requesting: false,
- haveData: false,
+ dataFetched: false,
  error: null
  }, action) {
  switch (action.type) {
@@ -148,7 +145,7 @@ export default function reducer(state = {
  nameEditMode: false,
  comment: null,
  requesting: false,
- haveData: false,
+ dataFetched: false,
  error: null
  }, action) {
  switch (action.type) {

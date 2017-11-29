@@ -1881,8 +1881,7 @@ var Breadcrumbs = (_dec = (0, _reactRedux.connect)(function (store) {
     return {
         articles: store.articles.articles,
         haveData: store.articles.haveData,
-        viewID: store.articles.viewID,
-        singleArticleData: store.articles.singleArticleData
+        viewID: store.articles.viewID
     };
 }), _dec(_class = function (_Component) {
     _inherits(Breadcrumbs, _Component);

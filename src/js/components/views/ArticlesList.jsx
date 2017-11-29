@@ -6,25 +6,26 @@ import Breadcrumbs from '../Breadcrumbs.jsx';
 import Article from '../articles/Article.jsx';
 
 import {getAllArticles} from '../../actions/dataActions';
+import {viewHasData} from '../../actions/navigationActions';
 import {mapObject} from '../../libs/functions';
 
 @connect((store) => {
     return {
         articles: store.data.articles,
-        haveData: store.data.haveData
+        dataFetched: store.data.dataFetched,
+        view: store.navigation.view
     };
 })
 export default class ArticlesList extends Component {
 
-    componentDidMount() {
-        if (!this.props.haveData) {
-            this.props.dispatch(getAllArticles());
-        }
+    componentWillMount() {
+        this.props.dispatch(getAllArticles());
     }
 
     render() {
-        const {articles} = this.props;
-        if (this.props.haveData) {
+        const {articles, dataFetched} = this.props;
+        if (dataFetched) {
+            //this.props.dispatch(viewHasData());
             let articleCards =  mapObject(articles, articleID => {
                 const article = articles[articleID];
                 return (

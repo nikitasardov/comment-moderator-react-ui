@@ -10,27 +10,22 @@ import {getArticle} from '../../actions/dataActions';
 
 @connect((store) => {
     return {
-        article: store.data.singleArticleData,
         articles: store.data.articles,
-        haveData: store.data.haveData,
+        dataFetched: store.data.dataFetched,
         view: store.navigation.view
     };
 })
 export default class SingleArticle extends Component {
 
-    componentDidMount() {
-        if (!this.props.article) {
-            this.props.dispatch(getArticle(this.props.view.data.articleID));
-        }
+    componentWillMount() {
+        this.props.dispatch(getArticle(this.props.view.data.articleID));
     }
 
     render() {
-        if (this.props.view.viewID === 4) {
-            console.log('SingleArticle', this.props);
-        }
-        if (this.props.article) {
-            const {article} = this.props;
+        const {articles, view, dataFetched} = this.props;
+        const article = articles[view.data.articleID];
 
+        if (dataFetched) {
             return (
                 <div className="ui container">
                     <h3 className="header" style={{'paddingTop': '15px'}}>
@@ -39,10 +34,7 @@ export default class SingleArticle extends Component {
                     <Breadcrumbs viewTitle={'Single article with comments'}/>
 
                     <div className="ui cards">
-                        <div
-                            className='ui fluid card'
-                            style={{'background': '#909090'}}
-                        >
+                        <div className='ui fluid card' style={{'background': '#909090'}}>
                             <Article
                                 articleID={article.id}
                                 authorID={article.author}
@@ -51,9 +43,7 @@ export default class SingleArticle extends Component {
                                 commentsArr={article.comments}
                             />
 
-                            {/*<CommentsOfArticle
-                                commentsArr={article.comments}
-                            />*/}
+                            <CommentsOfArticle commentsArr={article.comments}/>
 
                         </div>
                     </div>

@@ -6,9 +6,7 @@ import { goHome } from '../actions/navigationActions';
 @connect((store) => {
     return {
         articles: store.data.articles,
-        haveData: store.data.haveData,
-        /*viewID: store.data.viewID,*/
-        singleArticleData: store.data.singleArticleData
+        view: store.navigation.view
     };
 })
 export default class Breadcrumbs extends Component {

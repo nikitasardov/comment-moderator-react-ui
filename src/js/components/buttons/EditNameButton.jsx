@@ -6,9 +6,7 @@ import { putUser } from '../../actions/dataActions';
 @connect((store) => {
     return {
         /*nameEditMode: store.users.nameEditMode,*/
-        article: store.data.singleArticleData,
         articles: store.data.articles,
-        haveData: store.data.haveData,
         view: store.navigation.view
     };
 })

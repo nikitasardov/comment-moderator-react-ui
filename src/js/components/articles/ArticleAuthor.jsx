@@ -9,7 +9,6 @@ import {connect} from 'react-redux';
 export default class ArticleAuthor extends Component {
 
     render() {
-        console.log('ArticleAuthor', this.props);
         const {authorID, users} = this.props;
         return (
             <div className="meta" style={{'clear':'both'}}>

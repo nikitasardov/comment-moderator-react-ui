@@ -1,11 +1,18 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import {connect} from 'react-redux';
 
+@connect((store) => {
+    return {
+        users: store.data.users,
+        comments: store.data.comments
+    };
+})
 export default class CommentContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
             commentEditMode: false,
-            comment: this.props.text
+            newComment: this.props.comments[this.props.сommentID].text
         };
     }
 
@@ -20,15 +27,15 @@ export default class CommentContent extends Component {
              Save comment (id{this.props.id})
              </button>*/}
             <div className="field">
-                <textarea onChange={e => this.setState({comment: e.target.value})}>
-                    {this.state.comment}
+                <textarea onChange={e => this.setState({newComment: e.target.value})}>
+                    {this.state.newComment}
                 </textarea>
             </div>
         </div>;
 
         let text = <div className="text">
 
-            {this.props.comment}
+            {this.props.comments[this.props.сommentID].text}
 
         </div>;
 

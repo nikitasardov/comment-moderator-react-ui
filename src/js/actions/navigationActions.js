@@ -1,7 +1,5 @@
 import {
     NAV_HOME,
-    NAV_HOME_FULFILLED,
-    NAV_HOME_REJECTED,
 
     CHANGE_VIEW,
     CHANGE_VIEW_FULFILLED,
@@ -21,7 +19,8 @@ export function changeView(viewID, data={}) {
             type: CHANGE_VIEW,
             payload: {
                 viewID: viewID,
-                data: data
+                data: data,
+                hasData: false
             }
         });
     };

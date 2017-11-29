@@ -12,6 +12,7 @@ export default function reducer(state = {
     view: {
         viewID: 1
     }
+
 }, action) {
     switch (action.type) {
         case NAV_HOME: {
@@ -34,7 +35,6 @@ export default function reducer(state = {
             return {
                 ...state,
                 requesting: false,
-                haveData: true,
                 articles: action.payload,
                 viewID: 1
             };

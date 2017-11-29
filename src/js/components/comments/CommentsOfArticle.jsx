@@ -1,29 +1,40 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
 
 import CommentItem from "./CommentItem.jsx";
 import CommentsListHeader from "./CommentsListHeader.jsx";
 
+import {mapObject} from '../../libs/functions';
+
+@connect((store) => {
+    return {
+        comments: store.data.comments
+    };
+})
 export default class CommentsOfArticle extends Component {
 
     render() {
-        //commentsArr
-        let comments = this.props.comments.map(function(comment) {
-            return <CommentItem
-                key={comment.id.toString()}
-                id={comment.id}
-                commenter={comment.commenter}
-                text={comment.text}
-            />
+        const {comments, commentsArr} = this.props;
+
+        let commentsOfArticle = commentsArr.map(commentID => {
+            const comment = comments[commentID];
+            return (
+                <CommentItem
+                    key={comment.id.toString()}
+                    commentID={comment.id}
+                    commenterID={comment.commenter}
+                />
+            );
         });
 
         return (
             <div className="content" /*style={{'maxHeight': '60vh'}}*/>
-                <CommentsListHeader comments={comments}/>
+                <CommentsListHeader commentsArr={commentsArr}/>
                 <div
                     className="ui comments"
                     /*style={{'maxHeight': '45vh', 'overflowY': 'scroll'}}*/
                 >
-                    {comments}
+                    {commentsOfArticle}
                 </div>
             </div>
         );
