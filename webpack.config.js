@@ -12,17 +12,6 @@ module.exports = {
     },
 
     module: {
-        /*        rules: [
-         {
-         enforce: 'pre',
-         test: /\.jsx$/,
-         exclude: /node_modules/,
-         loaders: ['eslint'],
-         include: [
-         path.resolve(__dirname, "src"),
-         ],
-         }
-         ],*/
         loaders: [
             {
                 test: /\.(js|jsx)$/,
@@ -33,6 +22,16 @@ module.exports = {
                     plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
                 }
             }
+            /*,
+            {
+                enforce: 'pre',
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                loaders: ['eslint'],
+                include: [
+                    path.resolve(__dirname, "src"),
+                ],
+            }*/
         ]
     },
 

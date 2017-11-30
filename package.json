@@ -31,7 +31,7 @@
   "devDependencies": {},
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base . --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   }
