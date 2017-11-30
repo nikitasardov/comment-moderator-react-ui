@@ -48,7 +48,7 @@ export default class CommentContent extends Component {
     }
 
     render() {
-        console.log('this.props.commentID', this.props.commentID);
+        //console.log('this.props.commentID', this.props.commentID);
         return (
             <div>
                 {this.renderCommentText()}

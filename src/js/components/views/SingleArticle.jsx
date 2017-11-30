@@ -48,7 +48,7 @@ export default class SingleArticle extends Component {
                     </h3>
                     <Breadcrumbs viewTitle={'Single article with comments'}/>
 
-                    <div className="ui cards">
+                    <div className="ui cards" style={{'clear':'both'}}>
                         <div className='ui fluid card' style={{'background': '#909090'}}>
                             <Article
                                 articleID={article.id}

@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 
+import {changeView} from '../../actions/navigationActions';
+import {VIEW_USER_S_COMMENTS} from '../../constants.js';
+
 @connect((store) => {
     return {
         users: store.data.users
@@ -9,12 +12,16 @@ import {connect} from 'react-redux';
 export default class ArticleAuthor extends Component {
 
     render() {
-        const {authorID, users} = this.props;
+
+        const {authorID, users, dispatch} = this.props;
         return (
             <div className="meta" style={{'clear':'both'}}>
-                <span className="name">
+                <a className="author"
+                   onClick={() => {
+                       dispatch(changeView(VIEW_USER_S_COMMENTS, {userID: authorID}))
+                   }}>
                     <i className="user icon"/>{users[authorID].name} (id{authorID})
-                </span>
+                </a>
             </div>
         );
     }

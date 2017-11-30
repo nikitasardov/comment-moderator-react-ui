@@ -1,6 +1,6 @@
 {
   "name": "comment-moderator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
@@ -31,7 +31,7 @@
   "devDependencies": {},
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
-    "dev": "./node_modules/.bin/webpack-dev-server --content-base . --inline --hot",
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   }

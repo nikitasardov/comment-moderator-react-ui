@@ -51,7 +51,7 @@ export default class ArticlesList extends Component {
                     </h3>
                     <Breadcrumbs />
 
-                    <div className="ui cards">
+                    <div className="ui cards" style={{'clear':'both'}}>
                         {articleCards}
                     </div>
                 </div>

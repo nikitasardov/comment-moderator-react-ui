@@ -25,29 +25,30 @@ export default class Article extends Component {
         return ((this.props.excerpt) ? (text.substring(0, 200) + '...') : (text));
     }
 
-    render() {
-        const {view, dispatch, articleID, title, authorID, commentsArr, articleText} = this.props;
-
-        let headerStyle = {};
-        if (view.viewID !== VIEW_SINGLE_ARTICLE) {
-            headerStyle = {'cursor': 'pointer'};
+    articleTitle() {
+        if (this.props.view.viewID !== VIEW_SINGLE_ARTICLE) {
+            return (
+                <a className="header" style={{'marginBottom': '14px'}} onClick={() => {this.props.dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: this.props.articleID}))}}>
+                    <i className="file text outline icon"/>{this.props.title} (id{this.props.articleID})
+                </a>
+            );
+        } else {
+            return (
+                <h4 className="header">
+                    <i className="file text outline icon"/>{this.props.title} (id{this.props.articleID})
+                    <RefreshArticleButton articleID={this.props.articleID}/>
+                </h4>
+            );
         }
+    }
+
+    render() {
+        const {articleID, authorID, commentsArr, articleText} = this.props;
 
         return (
             <div className="content" style={{'maxHeight': '50vh'}}>
-                <h4
-                    className="header"
-                    style={headerStyle}
-                    onClick={() => {
-                        if (view.viewID !== VIEW_SINGLE_ARTICLE) {
-                            dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: articleID}))
-                        }
-                    }}
-                >
-                    <i className="file text outline icon"/>{title} (id{articleID})
 
-                    <RefreshArticleButton articleID={this.props.articleID} />
-                </h4>
+                {this.articleTitle()}
 
                 <ArticleAuthor authorID={authorID}/>
 

@@ -14,7 +14,7 @@ import {mapObject} from '../../libs/functions';
 export default class CommentsOfArticle extends Component {
 
     render() {
-        console.log('Comments of articles', this.props);
+        //console.log('Comments of articles', this.props);
         const {comments, commentsArr} = this.props;
 
         let commentsOfArticle = commentsArr.map(commentID => {

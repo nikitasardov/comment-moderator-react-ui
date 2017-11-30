@@ -17,7 +17,7 @@ export default class CommentsInfo extends Component {
     render() {
         const {view, dispatch, articleID, comments} = this.props;
 
-        if (view.viewID === VIEW_SINGLE_ARTICLE)  {
+        if (view.viewID === VIEW_SINGLE_ARTICLE) {
             return ('');
         }
         return (
@@ -28,7 +28,7 @@ export default class CommentsInfo extends Component {
                     dispatch(changeView(VIEW_SINGLE_ARTICLE, {articleID: articleID}))
                 }}
             >
-                <span>{comments.length} <i className="comments outline icon"/> Open card</span>
+                <a className="comments">{comments.length} <i className="comments outline icon"/> Open card</a>
             </div>
         );
     }

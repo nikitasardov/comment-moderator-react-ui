@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import {connect} from 'react-redux';
 
 import { editUser, cancelEditUser } from '../../actions/dataActions';
+import {VIEW_USER_S_COMMENTS} from '../../constants.js';
 
 @connect((store) => {
     return {
         users: store.data.users,
-        userInEditMode: store.data.userInEditMode
+        userInEditMode: store.data.userInEditMode,
+        view: store.navigation.view
     };
 })
 export default class EditNameButton extends Component {
@@ -28,10 +30,14 @@ export default class EditNameButton extends Component {
     }
 
     render() {
-        return (
-            <div style={{'display': 'inline'}}>
-                {this.renderEditNameButton()}
-            </div>
-        );
+        if (this.props.view.viewID !== VIEW_USER_S_COMMENTS) {
+            return (
+                <div style={{'display': 'inline'}}>
+                    {this.renderEditNameButton()}
+                </div>
+            );
+        } else {
+            return ('');
+        }
     }
 }

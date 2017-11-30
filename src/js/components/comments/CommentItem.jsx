@@ -17,7 +17,7 @@ export default class CommentItem extends Component {
     }
 
     render() {
-        console.log('CommentItem', this.props);
+        //console.log('CommentItem', this.props);
         const {commenterID, commentID} = this.props;
         return (
             <div className="comment">
