@@ -1,62 +1,35 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
 
-import { putComment } from '../../actions/dataActions';
+import { editComment, cancelEditComment } from '../../actions/dataActions';
 
+@connect((store) => {
+    return {
+        comments: store.data.comments,
+        commentInEditMode: store.data.commentInEditMode
+    };
+})
 export default class EditCommentButton extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            nameEditMode: false,
-            name: this.props.comment.commenter.name,
-            commentEditMode: false,
-            comment: this.props.text
-        };
-    }
 
-    saveCommentText = () => {
-        console.log('putCommentF(): commentID', this.props.id,
-                    'this.state.comment',this.state.comment);
-        this.props.putCommentF(this.props.id, this.state.comment)
-            .then(result => {
-                if (result) {
-                    this.setState({
-                        commentEditMode: false
-                    })
-                }
-            });
-    }
+    renderEditCommentButton() {
+        const {dispatch, commentID, commentInEditMode} = this.props;
 
-    renderEditCommentButton = () => {
-        let editButton = <button
-            className="ui violet mini button"
-            onClick={() => this.setState(
-                {
-                    commentEditMode: true,
-                    nameEditMode: false
-                }
-            )}
-        >
+        let editButton = <button className="ui violet mini button"
+                                 onClick={() => dispatch(editComment(commentID))}>
             <i className="comment icon"/>Edit comment
         </button>;
 
-        let cancelButton = <button
-            className="ui red mini button"
-            onClick={() => this.setState(
-                {
-                    commentEditMode: false,
-                    comment: this.props.text
-                }
-            )}
-        >
+        let cancelButton = <button className="ui red mini button"
+                                   onClick={() => dispatch(cancelEditComment())}>
             <i className="comment icon"/>Cancel editing comment
         </button>;
 
-        return (this.state.commentEditMode ? cancelButton : editButton);
+        return (commentInEditMode === commentID ? cancelButton : editButton);
     }
 
     render() {
         return (
-            <div>
+            <div style={{'display': 'inline'}}>
                 {this.renderEditCommentButton()}
             </div>
         );

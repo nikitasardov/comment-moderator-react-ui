@@ -14,30 +14,21 @@ import CommentContent from './CommentContent.jsx';
 export default class CommentItem extends Component {
     constructor(props) {
         super(props);
-        /*this.state = {
-            nameEditMode: false,
-            name: this.props.commenter.name,
-            commentEditMode: false,
-            comment: this.props.text
-        };*/
     }
 
     render() {
+        console.log('CommentItem', this.props);
+        const {commenterID, commentID} = this.props;
         return (
             <div className="comment">
                 <div className="ui inverted blue segment">
                     <div className="content">
                         <div className="ui right floated ">
-                            {/*<EditNameButton commenter={this.props.commenterID} />*/}
-                            {/*<EditCommentButton comment={this.props.commentID}/>*/}
+                            <EditNameButton commenterID={commenterID} />
+                            <EditCommentButton commentID={commentID}/>
                         </div>
-                        <CommenterName
-                            commenterID={this.props.commenterID}
-                        />
-                        <CommentContent
-                            /*comment={this.props.commentText}*/
-                            сommentID={this.props.commentID}
-                        />
+                        <CommenterName commenterID={commenterID} />
+                        <CommentContent commentID={commentID} />
                     </div>
                 </div>
             </div>

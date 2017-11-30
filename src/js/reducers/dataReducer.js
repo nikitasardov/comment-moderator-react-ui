@@ -5,12 +5,28 @@ import {
 
     GET_ARTICLE,
     GET_ARTICLE_REJECTED,
-    GET_ARTICLE_FULFILLED
+    GET_ARTICLE_FULFILLED,
+
+    EDIT_USER,
+    CANCEL_EDIT_USER,
+
+    PUT_USER,
+    PUT_USER_REJECTED,
+    PUT_USER_FULFILLED,
+
+    EDIT_COMMENT,
+    CANCEL_EDIT_COMMENT,
+
+    PUT_COMMENT,
+    PUT_COMMENT_REJECTED,
+    PUT_COMMENT_FULFILLED
 } from '../constants.js';
 
 export default function reducer(state = {
     requesting: false,
     dataFetched: false,
+    userInEditMode: null,
+    commentInEditMode: null,
     articles: {},
     comments: {},
     users: {},
@@ -45,11 +61,14 @@ export default function reducer(state = {
             };
         }
 
+
         case GET_ARTICLE: {
             return {
                 ...state,
                 requesting: true,
-                dataFetched: false
+                dataFetched: false,
+                userInEditMode: null,
+                commentInEditMode: null
             }
         }
 
@@ -72,14 +91,7 @@ export default function reducer(state = {
                     state.articles,
                     action.payload.articles
                 ),
-                /*articles: mapObject(state.data.articles, articleID => {
-                    const article = state.data.articles[articleID];
-                    // insert refreshed article into new state
-                    if (article.id === action.payload.id) {
-                        return action.payload.articles.id;
-                    }
-                    return article.id;
-                }),*/
+
                 comments: Object.assign(
                     {},
                     state.comments,
@@ -92,90 +104,103 @@ export default function reducer(state = {
                 )
             };
         }
+
+
+        case EDIT_USER: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: true,
+                userInEditMode: action.payload
+            };
+        }
+
+        case PUT_USER: {
+            return {
+                ...state,
+                requesting: true,
+                userInEditMode: null
+            };
+        }
+
+        case PUT_USER_REJECTED: {
+            return {
+                ...state,
+                requesting: false,
+                userInEditMode: null,
+                dataFetched: false,
+                error: action.payload
+            };
+        }
+
+        case PUT_USER_FULFILLED: {
+            return {
+                ...state,
+                requesting: false,
+                userInEditMode: null,
+                dataFetched: true,
+                response: action.payload.response,
+                users: Object.assign({}, state.users, action.payload.user)
+            };
+        }
+
+        case CANCEL_EDIT_USER: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: true,
+                userInEditMode: null
+            };
+        }
+
+
+        case EDIT_COMMENT: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: true,
+                commentInEditMode: action.payload
+            };
+        }
+
+        case PUT_COMMENT: {
+            return {
+                ...state,
+                requesting: true,
+                commentInEditMode: null
+            };
+        }
+
+        case PUT_COMMENT_REJECTED: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: false,
+                commentInEditMode: null,
+                error: action.payload
+            };
+        }
+
+        case PUT_COMMENT_FULFILLED: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: true,
+                commentInEditMode: null,
+                response: action.payload.response,
+                comments: Object.assign({}, state.comments, action.payload.comment)
+            };
+        }
+
+        case CANCEL_EDIT_COMMENT: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: true,
+                commentInEditMode: null
+            };
+        }
     }
 
     return state;
 }
-
-/*
- import { PUT_COMMENT, PUT_COMMENT_REJECTED, PUT_COMMENT_FULFILLED } from '../constants.js';
-
- export default function reducer(state = {
- comment: null,
- requesting: false,
- dataFetched: false,
- error: null
- }, action) {
- switch (action.type) {
- case PUT_COMMENT: {
- return {
- ...state,
- requesting: true
- };
- }
-
- case PUT_COMMENT_REJECTED: {
- return {
- ...state,
- requesting: false,
- error: action.payload
- };
- }
-
- case PUT_COMMENT_FULFILLED: {
- return {
- ...state,
- requesting: true,
- gotData: true,
- comment: action.payload
- };
- }
- }
-
- return state;
- }
-
-*/
-
-
-/*
- import { PUT_USER, PUT_USER_REJECTED, PUT_USER_FULFILLED } from '../constants.js';
-
- export default function reducer(state = {
- nameEditMode: false,
- comment: null,
- requesting: false,
- dataFetched: false,
- error: null
- }, action) {
- switch (action.type) {
- case PUT_USER: {
- return {
- ...state,
- requesting: true,
- nameEditMode: false
- };
- }
-
- case PUT_USER_REJECTED: {
- return {
- ...state,
- requesting: false,
- error: action.payload
- };
- }
-
- case PUT_USER_FULFILLED: {
- return {
- ...state,
- requesting: true,
- gotData: true,
- comment: action.payload
- };
- }
- }
-
- return state;
- }
-
-*/

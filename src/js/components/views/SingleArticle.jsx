@@ -7,6 +7,8 @@ import Article from '../articles/Article.jsx';
 import CommentsOfArticle from '../comments/CommentsOfArticle.jsx';
 
 import {getArticle} from '../../actions/dataActions';
+import {changeView} from '../../actions/navigationActions';
+import {VIEW_SINGLE_ARTICLE} from '../../constants.js';
 
 @connect((store) => {
     return {
@@ -21,7 +23,20 @@ export default class SingleArticle extends Component {
         this.props.dispatch(getArticle(this.props.view.data.articleID));
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps.view.data.forceFetch) {
+            this.props.dispatch(getArticle(this.props.view.data.articleID));
+        }
+    }
+
     render() {
+        if (this.props.view.data.forceFetch) {
+            this.props.dispatch(changeView(VIEW_SINGLE_ARTICLE, {
+                articleID: this.props.view.data.articleID,
+                forceFetch: false
+            }))
+        }
+
         const {articles, view, dataFetched} = this.props;
         const article = articles[view.data.articleID];
 

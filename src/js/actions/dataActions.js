@@ -7,7 +7,21 @@ import {
 
     GET_ARTICLE,
     GET_ARTICLE_REJECTED,
-    GET_ARTICLE_FULFILLED
+    GET_ARTICLE_FULFILLED,
+
+    EDIT_USER,
+    CANCEL_EDIT_USER,
+
+    PUT_USER,
+    PUT_USER_REJECTED,
+    PUT_USER_FULFILLED,
+
+    EDIT_COMMENT,
+    CANCEL_EDIT_COMMENT,
+
+    PUT_COMMENT,
+    PUT_COMMENT_REJECTED,
+    PUT_COMMENT_FULFILLED
 } from '../constants.js';
 
 let normalizer = new DataNormalizer();
@@ -54,54 +68,96 @@ export function getArticle(id) {
     };
 }
 
-/*
- import API from '../libs/API';
- import { PUT_COMMENT, PUT_COMMENT_REJECTED, PUT_COMMENT_FULFILLED  } from '../constants.js';
+export function editUser(userID) {
+    return function(dispatch) {
+        dispatch({
+            type: EDIT_USER,
+            payload: userID
+        });
+    };
+}
 
- export function putComment(id) {
- return function(dispatch) {
- dispatch({type: PUT_COMMENT});
+export function saveUser(id, newName) {
+    return function(dispatch) {
 
- API.putComment(id)
- .then((response) => {
- dispatch({
- type: PUT_COMMENT_FULFILLED,
- payload: response
- });
- })
- .catch((err) => {
- console.log('putComment API request failed', err);
- dispatch({
- type: PUT_COMMENT_REJECTED,
- payload: err
- });
- });
- };
- }
-*/
+        dispatch({type: PUT_USER});
 
-/*
- import API from '../libs/API';
- import { PUT_NAME, PUT_NAME_REJECTED, PUT_NAME_FULFILLED } from '../constants.js';
+        API.putUser(id, newName)
+            .then((response) => {
 
- export function putUser(id) {
- return function(dispatch) {
- dispatch({type: PUT_NAME});
+                let newUser = {};
+                newUser[id] = {id: id, name: newName};
 
- API.putUser(id)
- .then((response) => {
- dispatch({
- type: PUT_NAME_FULFILLED,
- payload: response
- });
- })
- .catch((err) => {
- console.log('putName API request failed', err);
- dispatch({
- type: PUT_NAME_REJECTED,
- payload: err
- });
- });
- };
- }
-*/
+                dispatch({
+                    type: PUT_USER_FULFILLED,
+                    payload: {
+                        response,
+                        user: newUser
+                    }
+                });
+            })
+            .catch((err) => {
+                console.log('putName API request failed', err);
+                dispatch({
+                    type: PUT_USER_REJECTED,
+                    payload: err
+                });
+            });
+
+    };
+}
+
+export function cancelEditUser() {
+    return function(dispatch) {
+        dispatch({type: CANCEL_EDIT_USER});
+    };
+}
+
+export function editComment(commentID) {
+    return function(dispatch) {
+        dispatch({
+            type: EDIT_COMMENT,
+            payload: commentID
+        });
+    };
+}
+
+export function saveComment(commentObj) {
+    return function(dispatch) {
+
+        dispatch({type: PUT_COMMENT});
+
+        API.putComment(commentObj)
+            .then((response) => {
+
+                let newComment = {};
+                newComment[commentObj.id] = {
+                    id: commentObj.id,
+                    text: commentObj.text,
+                    commenter: commentObj.commenter
+                };
+
+                dispatch({
+                    type: PUT_COMMENT_FULFILLED,
+                    payload: {
+                        response,
+                        comment: newComment
+                    }
+                });
+            })
+            .catch((err) => {
+                console.log('putName API request failed', err);
+                dispatch({
+                    type: PUT_COMMENT_REJECTED,
+                    payload: err
+                });
+            });
+
+    };
+}
+
+export function cancelEditComment() {
+    return function(dispatch) {
+        dispatch({type: CANCEL_EDIT_COMMENT});
+    };
+}

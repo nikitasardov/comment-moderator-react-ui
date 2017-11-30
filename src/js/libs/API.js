@@ -82,11 +82,10 @@ class API {
     /**
      * Puts single comment
      *
-     * @param id
-     * @param newText
+     * @param commentObj
      */
-    putComment = (id, newText) => {
-        return this.request(`${this.putCommentURL}${id}`, 'PUT', {'text': newText});
+    putComment = (commentObj) => {
+        return this.request(`${this.putCommentURL}${commentObj.id}`, 'PUT', {'text': commentObj.text});
     }
 
     /**

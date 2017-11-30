@@ -15,7 +15,7 @@ import {mapObject} from '../../libs/functions';
         view: store.navigation.view
     };
 })
-export default class ArticlesList extends Component {
+export default class AllArticlesList extends Component {
 
     componentWillMount() {
         this.props.dispatch(getAllArticles());
@@ -49,7 +49,7 @@ export default class ArticlesList extends Component {
                     <h3 className="header" style={{'paddingTop': '15px'}}>
                         <i className="doctor icon"/>Comment moderator
                     </h3>
-                    <Breadcrumbs />
+                    <Breadcrumbs viewTitle={'List of all comments'}/>
 
                     <div className="ui cards">
                         {articleCards}

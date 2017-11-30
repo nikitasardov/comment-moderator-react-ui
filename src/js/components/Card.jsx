@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Article from './articles/Article.jsx';
-import CommentsList from './views/CommentsList.jsx';
+import CommentsList from './comments/CommentsList.jsx';
 
 @connect((store) => {
     return {

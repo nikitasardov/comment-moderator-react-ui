@@ -14,10 +14,12 @@ import {mapObject} from '../../libs/functions';
 export default class CommentsOfArticle extends Component {
 
     render() {
+        console.log('Comments of articles', this.props);
         const {comments, commentsArr} = this.props;
 
         let commentsOfArticle = commentsArr.map(commentID => {
             const comment = comments[commentID];
+            console.log('currenc comment item', comment);
             return (
                 <CommentItem
                     key={comment.id.toString()}

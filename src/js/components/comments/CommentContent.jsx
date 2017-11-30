@@ -1,48 +1,54 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 
+import { saveComment } from '../../actions/dataActions';
+
 @connect((store) => {
     return {
-        users: store.data.users,
-        comments: store.data.comments
+        comments: store.data.comments,
+        commentInEditMode: store.data.commentInEditMode
     };
 })
 export default class CommentContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            commentEditMode: false,
-            newComment: this.props.comments[this.props.сommentID].text
+            newText: this.props.comments[this.props.commentID].text
         };
     }
 
     renderCommentText() {
+        const {dispatch, commentID, comments, commentInEditMode} = this.props;
+
         let textarea = <div className="ui form">
-            {/*<button
-             className="ui green mini button"
-             style={{'marginTop': '15px', 'marginBottom': '5px'}}
-             onClick={() => this.saveCommentText()}
-             >
-             <i className="comment icon"/>
-             Save comment (id{this.props.id})
-             </button>*/}
+            <button className="ui green mini button"
+                    style={{'marginTop': '15px', 'marginBottom': '5px'}}
+                    onClick={() => {dispatch(saveComment({
+                        id: commentID,
+                        text: this.state.newText,
+                        commenter: comments[commentID].commenter
+            }))}}>
+                <i className="comment icon"/>
+                Save comment (id{commentID})
+            </button>
             <div className="field">
-                <textarea onChange={e => this.setState({newComment: e.target.value})}>
-                    {this.state.newComment}
-                </textarea>
+                <textarea
+                    onChange={e => this.setState({newText: e.target.value})}
+                    placeholder={comments[commentID].text}
+                    value={this.state.newText}
+                />
             </div>
         </div>;
 
         let text = <div className="text">
-
-            {this.props.comments[this.props.сommentID].text}
-
+            {comments[commentID].text}
         </div>;
 
-        return (this.state.commentEditMode ? textarea : text);
+        return (commentInEditMode === commentID ? textarea : text);
     }
 
     render() {
+        console.log('this.props.commentID', this.props.commentID);
         return (
             <div>
                 {this.renderCommentText()}

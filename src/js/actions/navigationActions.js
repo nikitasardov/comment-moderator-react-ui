@@ -19,8 +19,7 @@ export function changeView(viewID, data={}) {
             type: CHANGE_VIEW,
             payload: {
                 viewID: viewID,
-                data: data,
-                hasData: false
+                data: data
             }
         });
     };

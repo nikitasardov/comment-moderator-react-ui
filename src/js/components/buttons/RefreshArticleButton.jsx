@@ -1,17 +1,32 @@
 import React, {Component} from "react";
+import {connect} from 'react-redux';
 
-export default class RefreshCardButton extends Component {
+import {changeView} from '../../actions/navigationActions';
+import {VIEW_SINGLE_ARTICLE} from '../../constants.js';
+
+@connect((store) => {
+    return {
+        view: store.navigation.view
+    };
+})
+export default class RefreshArticleButton extends Component {
 
     render() {
-
-        return (
-            <button
-                className="ui right floated grey mini button"
-                onClick={() => this.props.refreshArticleF(this.props.id)}
-            >
-                <i className="repeat icon"/>Refresh
-            </button>
-        );
+        if (this.props.view.viewID === VIEW_SINGLE_ARTICLE) {
+            return (
+                <button
+                    className="ui right floated grey mini button"
+                    onClick={() => this.props.dispatch(changeView(VIEW_SINGLE_ARTICLE, {
+                        articleID: this.props.articleID,
+                        forceFetch: true
+                    }))}
+                >
+                    <i className="repeat icon"/>Refresh
+                </button>
+            );
+        } else {
+            return ('');
+        }
     }
 }
 

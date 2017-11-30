@@ -5,6 +5,7 @@ import {changeView} from '../../actions/navigationActions';
 
 import ArticleAuthor from './ArticleAuthor.jsx';
 import CommentsInfo from '../comments/CommentsInfo.jsx';
+import RefreshArticleButton from '../buttons/RefreshArticleButton.jsx';
 
 import {VIEW_SINGLE_ARTICLE} from '../../constants.js';
 
@@ -20,7 +21,7 @@ export default class Article extends Component {
         super(props);
     }
 
-    mayBeExcerpt = (text) => {
+    mayBeExcerpt(text) {
         return ((this.props.excerpt) ? (text.substring(0, 200) + '...') : (text));
     }
 
@@ -44,6 +45,8 @@ export default class Article extends Component {
                     }}
                 >
                     <i className="file text outline icon"/>{title} (id{articleID})
+
+                    <RefreshArticleButton articleID={this.props.articleID} />
                 </h4>
 
                 <ArticleAuthor authorID={authorID}/>
