@@ -1,5 +1,5 @@
-export const NAV_HOME = 'NAV_HOME,';
-export const NAV_HOME_FULFILLED = 'NAV_HOME_FULFILLED,';
+export const NAV_HOME = 'NAV_HOME';
+export const NAV_HOME_FULFILLED = 'NAV_HOME_FULFILLED';
 export const NAV_HOME_REJECTED = 'NAV_HOME_REJECTED';
 
 /**
@@ -15,7 +15,7 @@ export const VIEW_LIST_OF_COMMENTS = 2;
 export const VIEW_USER_S_COMMENTS = 3;
 export const VIEW_SINGLE_ARTICLE = 4;
 
-export const CHANGE_VIEW = 'CHANGE_VIEW,';
+export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const CHANGE_VIEW_FULFILLED = 'CHANGE_VIEW_FULFILLED,';
 export const CHANGE_VIEW_REJECTED = 'CHANGE_VIEW_REJECTED';
 
