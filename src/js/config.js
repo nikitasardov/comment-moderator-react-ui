@@ -1,1 +1,1 @@
-export const API_ADDR = 'http://localhost:4567/api';
+export const API_ADDR = 'http://' + window.location.hostname + ':4567/api';
