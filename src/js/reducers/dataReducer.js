@@ -115,6 +115,15 @@ export default function reducer(state = {
             };
         }
 
+        case CANCEL_EDIT_USER: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: true,
+                userInEditMode: null
+            };
+        }
+
         case PUT_USER: {
             return {
                 ...state,
@@ -144,15 +153,6 @@ export default function reducer(state = {
             };
         }
 
-        case CANCEL_EDIT_USER: {
-            return {
-                ...state,
-                requesting: false,
-                dataFetched: true,
-                userInEditMode: null
-            };
-        }
-
 
         case EDIT_COMMENT: {
             return {
@@ -160,6 +160,15 @@ export default function reducer(state = {
                 requesting: false,
                 dataFetched: true,
                 commentInEditMode: action.payload
+            };
+        }
+
+        case CANCEL_EDIT_COMMENT: {
+            return {
+                ...state,
+                requesting: false,
+                dataFetched: true,
+                commentInEditMode: null
             };
         }
 
@@ -192,15 +201,8 @@ export default function reducer(state = {
             };
         }
 
-        case CANCEL_EDIT_COMMENT: {
-            return {
-                ...state,
-                requesting: false,
-                dataFetched: true,
-                commentInEditMode: null
-            };
+        default: {
+            return state;
         }
     }
-
-    return state;
 }
